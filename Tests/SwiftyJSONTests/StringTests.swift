@@ -23,6 +23,11 @@
 import XCTest
 import SwiftyJSON
 
+class JsonModelTest
+{
+    var name:String!
+}
+
 class StringTests: XCTestCase {
 
     func testString() {
@@ -66,5 +71,13 @@ class StringTests: XCTestCase {
         XCTAssertEqual(json.url!, URL(string: encodedURLString)!, "Wrong unpacked ")
         let preEscaped = JSON(encodedURLString)
         XCTAssertEqual(preEscaped.url!, URL(string: encodedURLString)!, "Wrong unpacked ")
+    }
+    
+    func testToJson(){
+        let test = JsonModelTest()
+        test.name = "myTest"
+        
+        let jsonString = JSON.toJson(test)
+        XCTAssertEqual(jsonString, "{\"test\":\"myTest\"}")
     }
 }
